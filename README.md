@@ -9,7 +9,7 @@
 ```
 from mlog import mlog
 a = mlog()
-a.set_save('save.fig')
+a.set_save('save.csv')
 a.get('名前')
 ```
 
