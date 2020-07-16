@@ -12,3 +12,5 @@ a = mlog()
 a.set_save('save.fig')
 a.get('名前')
 ```
+
+「save.csv」は友人戦が行われるたびに更新していきます．
