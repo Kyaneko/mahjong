@@ -24,7 +24,7 @@ class mlog:
     
     def __init__(self):
         
-        self.LOG_NAMES = ['round','name1','name2','name3','name4','status','riichi','claim']
+        self.LOG_NAMES = ['round','name1','name2','name3','name4','status','claim']
         self.RESULT_COLUMNS = ['局','得点','順位','放銃','立直','副露','立直和了','副露和了','ツモ','ロン','和了点']
         self.SAVE_COLUMNS = ['半荘','局','得点','1位','2位','3位','4位','放銃','立直','副露','立直和了','副露和了','ツモ','ロン','和了点']
         self.log = None
@@ -71,7 +71,7 @@ class mlog:
             if not all([len_is_4(s) for s in list(log.loc[i,'status':'claim'])]):
                 print_error(i)
                 return
-            status,riichi,claim = list(log.loc[i,'status':'claim'])
+            status,claim = list(log.loc[i,'status':'claim'])
             
             if not all([is_num(x) for x in list(log.loc[i,'name1':'name4'])]):
                 print_error(i)
@@ -82,7 +82,7 @@ class mlog:
                 
                 player = player_names[j]
                 
-                if riichi[j]=='o':
+                if claim[j]=='r':
                     result.loc[player,'立直'] += 1
                     tmp[j] -= 1000
                     if status[j] in ['t','r']:
@@ -265,7 +265,7 @@ class mlog:
         ax1.set_title('平均得失点（ウマ：{}-{}）'.format(uma[0],uma[1]))
         ax1.set_yticks(y)
         ax1.set_yticklabels(players)
-        ax1.set_xlim(min(平均得失点)-2000, max(平均得失点)+2000)
+        ax1.set_xlim(min(平均得失点)-2500, max(平均得失点)+2500)
         ax1.set_ylim(-0.5,length-0.5)
         for i,j in zip(平均得失点, y):
             ax1.text(
@@ -294,7 +294,7 @@ class mlog:
         ax2.set_ylim(-0.5,length-0.5)
         for i,j in zip(平均順位, y):
             ax2.text(
-                i+0.02, j, i,
+                i+0.02, j, '{:.3}'.format(i),
                 ha='left',va='center'
             )
         
